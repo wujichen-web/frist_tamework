@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -59,6 +59,14 @@ return [
             'provider' => 'administrators',  // 指向新的老师提供者
             'hash' => false,
         ],
+
+
+        
+        //这是修改时添加的
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+        ],
     ],
 
     /*
@@ -85,23 +93,23 @@ return [
 //        ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admins::class,
+            'model' => App\Models\User::class,
         ],
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Users::class, // 这应该是你的用户模型的类名
+            'model' => App\Models\User::class, // 这应该是你的用户模型的类名
         ],
 
 
-        'administratorss' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\WdwAdminRegisterModel::class,
-        ],
+        // 'administratorss' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\WdwAdminRegisterModel::class,
+        // ],
 
-        'studentss' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\students::class,
-        ],
+        // 'studentss' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\students::class,
+        // ],
 
         // 'users' => [
         //     'driver' => 'database',

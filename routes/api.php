@@ -1,29 +1,61 @@
 <?php
 
-use App\Http\Controllers\WwjController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JyhController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+// 用户注册接口
+Route::post('/register', [jyhController::class, 'register']);
+// 用户登录接口
+Route::post('/login', [jyhController::class, 'login']);
 
+// 需要认证的接口组
+Route::middleware('auth:api')->group(function () {
+    // 获取当前用户信息
+    Route::get('/me', [jyhController::class, 'me']);
+    // 修改密码接口
+    Route::post('/change-password', [jyhController::class, 'changePassword']);
+    // 退出登录接口
+    Route::post('/logout', [JyhController::class, 'logout']);
 
-    Route::post('user/register', [WwjController::class, 'Wwjregister']);
-    Route::post('user/sendVerificationCode', [WwjController::class, 'sendVerificationCode'])->name('send.verification.code');
-    Route::post('user/forgotPassword', [WwjController::class, 'forgotPassword']);
-    Route::get('admin/export-competition-star', [WwjController::class, 'exportCompetitionStar']);
-    Route::get('admin/export-innovation-star', [WwjController::class, 'exportInnovationStar']);
-    Route::get('admin/export-science-star', [WwjController::class, 'exportScienceStar']);
-    Route::post('user/viewScienceStar', [WwjController::class, 'viewScienceStar']);
-//    Route::post('certificateContent', [WwjController::class, 'certificateContent']);
+    
+    // 教师相关接口
+    // 获取可选课程列表
+    Route::get('/available-courses', [jyhController::class, 'availableCourses']);
+    // 申请课程接口
+    Route::post('/apply-course', [jyhController::class, 'applyCourse']);
+    // 获取我的课程申请列表
+    Route::get('/my-applications', [jyhController::class, 'myApplications']);
+    // 删除课程申请
+    Route::delete('/delete-application/{id}', [jyhController::class, 'deleteApplication']);
+    // 获取已分配给我的课程
+    Route::get('/my-assigned-courses', [jyhController::class, 'myAssignedCourses']);
+    
+    // 管理员相关接口
+    Route::middleware('admin')->group(function () {
+        // 添加课程接口
+        Route::post('/add-course', [jyhController::class, 'addCourse']);
+        // 更新课程信息接口
+        Route::put('/update-course/{id}', [jyhController::class, 'updateCourse']);
+        // 获取所有课程列表
+        Route::get('/all-courses', [jyhController::class, 'allCourses']);
+        // 获取待审核的课程申请列表
+        Route::get('/application-review-list', [jyhController::class, 'applicationReviewList']);
+        // 审核课程申请接口
+        Route::post('/review-application/{id}', [jyhController::class, 'reviewApplication']);
+        // 获取申请某课程的所有教师列表
+        Route::get('/teachers-for-course/{courseId}', [jyhController::class, 'teachersForCourse']);
+        // 分配课程接口
+        Route::post('/assign-course', [jyhController::class, 'assignCourse']);
+        // 获取所有教师列表
+        Route::get('/all-teachers', [jyhController::class, 'allTeachers']);
+        // 重置教师密码接口
+        Route::post('/reset-teacher-password/{id}', [jyhController::class, 'resetTeacherPassword']);
+        // 添加教师接口
+        Route::post('/add-teacher', [jyhController::class, 'addTeacher']);
+    });
+});
+
 
 
 
