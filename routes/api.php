@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\WwjController;
+use App\Http\Controllers\LrzAdminsController;
+use App\Http\Controllers\LrzTeachersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,17 +16,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// 管理员端路由
+Route::prefix('admin')->group(function () {
+    Route::post('login', [LrzAdminsController::class, 'LrzAdminLogin']);
+    Route::post('create-user', [LrzAdminsController::class, 'LrzCreateUser']);
+    Route::group(['middleware' => 'jwt.auth'], function () {
+        Route::post('logout', [LrzAdminsController::class, 'LrzLogout']);
+    });
 
-    Route::post('user/register', [WwjController::class, 'Wwjregister']);
-    Route::post('user/sendVerificationCode', [WwjController::class, 'sendVerificationCode'])->name('send.verification.code');
-    Route::post('user/forgotPassword', [WwjController::class, 'forgotPassword']);
-    Route::get('admin/export-competition-star', [WwjController::class, 'exportCompetitionStar']);
-    Route::get('admin/export-innovation-star', [WwjController::class, 'exportInnovationStar']);
-    Route::get('admin/export-science-star', [WwjController::class, 'exportScienceStar']);
-    Route::post('user/viewScienceStar', [WwjController::class, 'viewScienceStar']);
-//    Route::post('certificateContent', [WwjController::class, 'certificateContent']);
+});
 
-
-
-
-
+// 教师端路由
+Route::prefix('teacher')->group(function () {
+    Route::post('login', [LrzTeachersController::class, 'LrzLogin']);
+    Route::post('approve-course-directly', [LrzTeachersController::class, 'LrzApproveCourseDirectly']);
+    Route::group(['middleware' => 'jwt.auth'], function () {
+        Route::get('my-courses', [LrzTeachersController::class,'LrzMyCourses']);
+        Route::get('selectable-courses', [LrzTeachersController::class,'LrzSelectCourses']);//可选课程
+        Route::post('select-courses', [LrzTeachersController::class,'LrzSelectCourses']);//选择课程
+        Route::get('selected-courses', [LrzTeachersController::class,'LrzSelectedCourses']);//已选课程
+        Route::delete('selected-courses', [LrzTeachersController::class,'LrzDeleteSelectedCourses']);//删除已选课程
+        Route::post('logout', [LrzTeachersController::class, 'LrzLogout']);
+    });
+});
