@@ -1,0 +1,6 @@
+[submodule "frist_tamwork"]
+	path = frist_tamwork
+	url = https://github.com/beloveduj/frist_tamework.git
+[submodule "frist_tamework"]
+	path = frist_tamework
+	url = https://github.com/beloveduj/frist_tamework.git
