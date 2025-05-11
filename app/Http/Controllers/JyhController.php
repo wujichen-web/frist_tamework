@@ -272,10 +272,8 @@ public function allCourses(Request $request)
     $perPage = $request->input('per_page', 10);
     $page = $request->input('page', 1);
 
-    $courses = Course::with(['assignments.user'])
+    return Course::with(['assignments.user'])
         ->paginate($perPage, ['*'], 'page', $page);
-
-    return response()->json($courses);
 }
 
 //获取申请审核列表
@@ -374,7 +372,7 @@ public function allTeachers(Request $request)
     $teachers = User::where('role', 'teacher')
         ->paginate($perPage, ['*'], 'page', $page);
 
-    return response()->json($teachers);
+        return response()->json($teachers, 200, [], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 }
 
 //重置老师密码
