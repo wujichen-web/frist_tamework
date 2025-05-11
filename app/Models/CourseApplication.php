@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CourseApplication extends Model
 {
     use HasFactory;
+<<<<<<< HEAD
     protected $fillable = ['user_id', 'course_id', 'status'];
     
     public function user()
@@ -19,4 +20,6 @@ class CourseApplication extends Model
     {
         return $this->belongsTo(Course::class);
     }
+=======
+>>>>>>> 04eaf31 (first)
 }
