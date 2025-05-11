@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'api',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
@@ -36,7 +36,6 @@ return [
     */
 
     'guards' => [
-<<<<<<< HEAD
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -48,35 +47,7 @@ return [
         'user' => [
             'driver' => 'jwt',
             'provider' => 'users',
-
         ],
-        'student' => [
-            'driver' => 'jwt',
-            'provider' => 'student',
-            'hash' => false,
-        ],
-        'administrator' => [
-            'driver' => 'jwt',  // 使用 JWT 驱动
-            'provider' => 'administrators',  // 指向新的老师提供者
-            'hash' => false,
-        ],
-
-
-        
-        //这是修改时添加的
-=======
->>>>>>> 04eaf31 (first)
-        'api' => [
-            'driver' => 'jwt',
-            'provider' => 'users',
-        ],
-<<<<<<< HEAD
-=======
-        'teacher' => [
-            'driver' => 'jwt',
-            'provider' => 'users',
-        ]
->>>>>>> 04eaf31 (first)
     ],
 
     /*
@@ -97,40 +68,14 @@ return [
     */
 
     'providers' => [
-<<<<<<< HEAD
-//        'users' => [
-//            'driver' => 'eloquent',
-//            'model' => App\Models\User::class,
-//        ],
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Admins::class,
         ],
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class, // 这应该是你的用户模型的类名
-        ],
-
-
-        // 'administratorss' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\WdwAdminRegisterModel::class,
-        // ],
-
-        // 'studentss' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\students::class,
-        // ],
-=======
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
-        'teacher' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ]
->>>>>>> 04eaf31 (first)
 
         // 'users' => [
         //     'driver' => 'database',

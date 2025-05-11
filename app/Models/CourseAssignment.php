@@ -4,54 +4,39 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
-=======
-use Illuminate\Support\Facades\DB;
->>>>>>> 04eaf31 (first)
 
 class CourseAssignment extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
-    protected $fillable = ['user_id', 'course_id'];
-    
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-    
-=======
-
-    //批量操作赋值
+    protected $primaryKey = 'id'; // 明确主键为 id
+    // 更新可填充字段数组，添加新字段
     protected $fillable = [
-        'course_id',
         'teacher_id',
+        'course_code',
+        'course_name',
+        'course_category',
+        'course_nature',
+        'credits',
+        'status',
+        'class_name',
+        'leader',
+        'major',
+        'total_hours',
+        'grade',
+        'student_num',
+        'semester',
+        'department'
     ];
 
-    protected $with = [
-        'courses', 'users'
-    ]; // 默认预加载关联
-
-    // 关联课程
->>>>>>> 04eaf31 (first)
+    // 定义与 CourseInfo 模型的关联，假设 course_code 是关联字段
     public function course()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(CourseInfo::class, 'course_code');
     }
-<<<<<<< HEAD
-=======
 
-    // 关联教师
+    // 修正与 User 模型的关联，假设 teacher_id 是关联到 User 模型（这里假设为教师模型）的外键
     public function teacher()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'teacher_id');
     }
-
-    // 关联操作管理员
-    public function admin()
-    {
-        return $this->belongsTo(User::class, 'admin_id');
-    }
-
->>>>>>> 04eaf31 (first)
 }
