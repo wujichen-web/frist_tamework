@@ -5,7 +5,11 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
+<<<<<<< HEAD
         "php": "^7.3|^8.0",
+=======
+        "php": "^8.0.0",
+>>>>>>> 04eaf31 (first)
         "ext-curl": "*",
         "aliyuncs/oss-sdk-php": "^2.6",
         "barryvdh/laravel-cors": "^3.0",
@@ -14,6 +18,10 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+<<<<<<< HEAD
+=======
+        "laravel/ui": "3.4",
+>>>>>>> 04eaf31 (first)
         "maatwebsite/excel": "^3.1",
         "phpoffice/phpspreadsheet": "^1.18",
         "tymon/jwt-auth": "^1.0@dev"
@@ -23,7 +31,11 @@
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
+<<<<<<< HEAD
         "nunomaduro/collision": "^5.10",
+=======
+        "nunomaduro/collision": "^5.0",
+>>>>>>> 04eaf31 (first)
         "phpunit/phpunit": "^9.5.10"
     },
     "autoload": {

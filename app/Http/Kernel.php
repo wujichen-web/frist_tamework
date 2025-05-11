@@ -42,8 +42,13 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+<<<<<<< HEAD
 //            \Illuminate\Session\Middleware\StartSession::class,
 //            \Illuminate\Session\Middleware\AuthenticateSession::class,
+=======
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\Session\Middleware\AuthenticateSession::class,
+>>>>>>> 04eaf31 (first)
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
@@ -70,5 +75,9 @@ class Kernel extends HttpKernel
         'jwt.role' => \App\Http\Middleware\JWTRoleAuth::class,
         'jwt.role1' => \App\Http\Middleware\JwtAuth::class,
         'cors' => \App\Http\Middleware\EnableCrossRequestMiddleware::class,
+<<<<<<< HEAD
+=======
+        'admin' => \App\Http\Middleware\CheckRole::class,
+>>>>>>> 04eaf31 (first)
     ];
 }

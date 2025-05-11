@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use App\Http\Controllers\JyhController;
 
 // 用户注册接口
@@ -61,3 +62,49 @@ Route::middleware('auth:api')->group(function () {
 
 
 
+=======
+use App\Http\Controllers\YjyController;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+
+
+
+// 公共接口 (无需认证)
+Route::post('/YjyAdminLogin', [YjyController::class, 'YjyAdminLogin']);
+Route::post('/YjyTeacherLogin', [YjyController::class, 'YjyTeacherLogin']);      // 用户登录
+Route::post('/YjyAdminRegister', [YjyController::class, 'YjyAdminRegister']);
+Route::post('/YjyTeacherRegister', [YjyController::class, 'YjyTeacherRegister']);// 用户注册
+
+// 认证用户公共接口 (需 JWT 认证)
+Route::middleware('auth:api')->group(function () {
+    Route::post('/logout', [YjyController::class, 'logoutUser']); // 退出登录
+});
+
+
+//管理员端接口 (需 admin 角色)
+Route::middleware(['auth:api', 'admin:admin'])->group(function () {
+    Route::get('/allCourses', [YjyController::class, 'getAllCourse']);    // 查看所有课程
+    //查询课程（筛选）
+    Route::get('admin/courses/research', [YjyController::class, 'research']);
+    //创建新课程
+    Route::match(['post','put','delete'],'admin/courses/create_course', [YjyController::class, 'createCourse']);
+    //修改课程
+    Route::put('/admin/courses/{courses}', [YjyController::class, 'updateCourse']);
+    //创建新增用户
+    Route::post('/admin/users', [YjyController::class, 'createUser']);
+    //查看所有教师
+    Route::get('/admin/teachers', [YjyController::class, 'getAllTeacher']);
+    //重置教师密码
+    Route::put('/admin/teachers/{teacher}/reset-password', [YjyController::class, 'resetPassword']);
+});
+>>>>>>> 04eaf31 (first)

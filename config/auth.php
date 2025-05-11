@@ -36,6 +36,7 @@ return [
     */
 
     'guards' => [
+<<<<<<< HEAD
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -63,10 +64,19 @@ return [
 
         
         //这是修改时添加的
+=======
+>>>>>>> 04eaf31 (first)
         'api' => [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
+<<<<<<< HEAD
+=======
+        'teacher' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+        ]
+>>>>>>> 04eaf31 (first)
     ],
 
     /*
@@ -87,6 +97,7 @@ return [
     */
 
     'providers' => [
+<<<<<<< HEAD
 //        'users' => [
 //            'driver' => 'eloquent',
 //            'model' => App\Models\User::class,
@@ -110,6 +121,16 @@ return [
         //     'driver' => 'eloquent',
         //     'model' => App\Models\students::class,
         // ],
+=======
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+        'teacher' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ]
+>>>>>>> 04eaf31 (first)
 
         // 'users' => [
         //     'driver' => 'database',
