@@ -162,10 +162,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Mail\MailServiceProvider::class,
-<<<<<<< HEAD
-=======
-        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
->>>>>>> 04eaf31 (first)
         /*
          * Package Service Providers...
          */

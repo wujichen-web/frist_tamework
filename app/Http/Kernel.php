@@ -2,7 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Tymon\JWTAuth\Http\Middleware\Authenticate;
 
 class Kernel extends HttpKernel
 {
@@ -30,25 +32,15 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \App\Http\Middleware\EncryptCookies::class,
+            EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\Session\Middleware\AuthenticateSession::class,
         ],
 
         'api' => [
-<<<<<<< HEAD
-//            \Illuminate\Session\Middleware\StartSession::class,
-//            \Illuminate\Session\Middleware\AuthenticateSession::class,
-=======
-            \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\Session\Middleware\AuthenticateSession::class,
->>>>>>> 04eaf31 (first)
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
@@ -72,12 +64,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'jwt.role' => \App\Http\Middleware\JWTRoleAuth::class,
-        'jwt.role1' => \App\Http\Middleware\JwtAuth::class,
+        'jwt.auth' => Authenticate::class,
         'cors' => \App\Http\Middleware\EnableCrossRequestMiddleware::class,
-<<<<<<< HEAD
-=======
-        'admin' => \App\Http\Middleware\CheckRole::class,
->>>>>>> 04eaf31 (first)
     ];
 }
